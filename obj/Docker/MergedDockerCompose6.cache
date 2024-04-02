@@ -1,0 +1,30 @@
+services:
+  mymoneyassistant:
+    build:
+      context: C:\Projects\PET\MyMoneyAssistant
+      dockerfile: MyMoneyAssistant/Dockerfile
+    depends_on:
+      postgres:
+        condition: service_started
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_HTTPS_PORTS: '8081'
+      ASPNETCORE_HTTP_PORTS: '8080'
+    image: mymoneyassistant
+    ports:
+    - published: 8000
+      target: 80
+    - target: 8080
+    - target: 8081
+    volumes:
+    - C:\Users\v.brodikov\AppData\Roaming\ASP.NET\Https:/home/app/.aspnet/https:ro
+    - C:\Users\v.brodikov\AppData\Roaming\Microsoft\UserSecrets:/home/app/.microsoft/usersecrets:ro
+  postgres:
+    container_name: postgres
+    environment:
+      POSTGRES_PASSWORD: postgres
+    image: postgres
+    ports:
+    - published: 8001
+      target: 5432
+version: '3.4'

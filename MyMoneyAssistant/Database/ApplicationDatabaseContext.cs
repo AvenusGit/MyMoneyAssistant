@@ -42,10 +42,12 @@ namespace MyMoneyAssistant.Database
         {
             Database.EnsureCreated();
         }
-
+        /// <summary>
+        /// Настройка строки подключения
+        /// </summary>
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=MyHomeAssistantDB;Username=postgres;Password=postgres");
+            optionsBuilder.UseNpgsql("Host=postgres;Port=5432;Database=MyHomeAssistantDB;Username=postgres;Password=postgres");
         }
     }
 

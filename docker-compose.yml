@@ -16,3 +16,5 @@ services:
     image: postgres
     environment:
         POSTGRES_PASSWORD: postgres
+    ports:
+        - "8001:5432" 

@@ -286,6 +286,11 @@
             Контекст операций
             </summary>
         </member>
+        <member name="M:MyMoneyAssistant.Database.ApplicationDatabaseContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)">
+            <summary>
+            Настройка строки подключения
+            </summary>
+        </member>
         <member name="T:MyMoneyAssistant.Models.Operation">
             <summary>
             Операция над финансами
