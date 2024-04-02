@@ -1,0 +1,18 @@
+version: '3.4'
+
+services:
+  mymoneyassistant:
+    image: ${DOCKER_REGISTRY-}mymoneyassistant
+    build:
+      context: .
+      dockerfile: MyMoneyAssistant/Dockerfile
+    depends_on:
+        "postgres":
+            condition: service_started
+    ports:
+        - "8000:80"
+  postgres:
+    container_name: 'postgres'
+    image: postgres
+    environment:
+        POSTGRES_PASSWORD: postgres

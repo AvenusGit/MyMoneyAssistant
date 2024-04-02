@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MyMoneyAssistant.Models;
 using MyMoneyAssistant.Models.Wallets;
 
 namespace MyMoneyAssistant.Database
@@ -28,6 +29,14 @@ namespace MyMoneyAssistant.Database
         /// Контекст кошельков - кредитных карт
         /// </summary>
         public DbSet<CreditCardWallet> CreditCardWallets { get; set; } = null!;
+        /// <summary>
+        /// Контекст групп операций
+        /// </summary>
+        public DbSet<OperationGroup> OperationGroups { get; set; } = null!;
+        /// <summary>
+        /// Контекст операций
+        /// </summary>
+        public DbSet<Operation> Operations { get; set; } = null!;
 
         public ApplicationDatabaseContext() 
         {
@@ -36,7 +45,7 @@ namespace MyMoneyAssistant.Database
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=usersdb;Username=postgres;Password=postgres");
+            optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=MyHomeAssistantDB;Username=postgres;Password=postgres");
         }
     }
 

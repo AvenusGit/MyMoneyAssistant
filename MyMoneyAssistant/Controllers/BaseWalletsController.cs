@@ -10,6 +10,10 @@ using MyMoneyAssistant.Models.Wallets;
 
 namespace MyMoneyAssistant.Controllers
 {
+    /// <summary>
+    /// Контроллер абстрактных кошельков
+    /// Для действий с конкретными видами кошельков используй отедльные контроллеры по видам
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class BaseWalletsController : ControllerBase
@@ -25,7 +29,7 @@ namespace MyMoneyAssistant.Controllers
         /// Получить все кошельки
         /// </summary>
         /// <returns></returns>
-        [HttpGet]
+        [HttpGet("/all")]
         public async Task<ActionResult<IEnumerable<BaseWallet>>> GetAllWallets()
         {
             return await _context.AllWallets.ToListAsync();
@@ -49,49 +53,21 @@ namespace MyMoneyAssistant.Controllers
             return baseWallet;
         }
 
-        // PUT: api/BaseWallets/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutBaseWallet(long id, BaseWallet baseWallet)
+        /// <summary>
+        /// Получить список кошельков - карточек
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("onlyCards")]
+        public async Task<ActionResult<IEnumerable<CardWallet>>> GetOnlyCardWallets()
         {
-            if (id != baseWallet.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(baseWallet).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!BaseWalletExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+            return await _context.CardWallets.ToListAsync();
         }
 
-        // POST: api/BaseWallets
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<BaseWallet>> PostBaseWallet(BaseWallet baseWallet)
-        {
-            _context.AllWallets.Add(baseWallet);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetBaseWallet", new { id = baseWallet.Id }, baseWallet);
-        }
-
-        // DELETE: api/BaseWallets/5
+        /// <summary>
+        /// Удалить кошелек
+        /// </summary>
+        /// <param name="id">Идентификатор кошелька</param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteBaseWallet(long id)
         {
@@ -105,11 +81,6 @@ namespace MyMoneyAssistant.Controllers
             await _context.SaveChangesAsync();
 
             return NoContent();
-        }
-
-        private bool BaseWalletExists(long id)
-        {
-            return _context.AllWallets.Any(e => e.Id == id);
         }
     }
 }

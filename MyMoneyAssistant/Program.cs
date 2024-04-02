@@ -1,5 +1,7 @@
-﻿using Microsoft.OpenApi.Models;
+﻿using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Microsoft.OpenApi.Models;
 using MyMoneyAssistant.Database;
+using Newtonsoft.Json.Converters;
 using System.Reflection;
 
 namespace MyMoneyAssistant
@@ -9,8 +11,12 @@ namespace MyMoneyAssistant
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-            builder.Services.AddControllers();  
+            builder.Services
+                .AddControllers()
+                .AddNewtonsoftJson(options => { options.SerializerSettings.Converters.Add(new StringEnumConverter());
+                    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore; });  
             builder.Services.AddEndpointsApiExplorer();
+
             // Генератор документации
             builder.Services.AddSwaggerGen(options =>
             {
@@ -21,22 +27,20 @@ namespace MyMoneyAssistant
                     Description = "Тестовый проект приложения управления финансами",
                 });
 
-                // using System.Reflection;
                 var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
             });
 
+            // контекст БД
             builder.Services.AddScoped<ApplicationDatabaseContext>();
 
             var app = builder.Build();
-            if (app.Environment.IsDevelopment())
-            {
-                app.UseSwagger();
-                app.UseSwaggerUI();
-            }
+
+            // тестовое приложение использует сваггер нетолько в дебаге
+            app.UseSwagger();
+            app.UseSwaggerUI();
 
             app.UseAuthorization();
-
             app.MapControllers();
 
             app.Run();

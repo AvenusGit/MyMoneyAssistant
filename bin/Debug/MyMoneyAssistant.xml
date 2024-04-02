@@ -1,0 +1,450 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MyMoneyAssistant</name>
+    </assembly>
+    <members>
+        <member name="T:MyMoneyAssistant.Controllers.BaseWalletsController">
+            <summary>
+            Контроллер абстрактных кошельков
+            Для действий с конкретными видами кошельков используй отедльные контроллеры по видам
+            </summary>
+        </member>
+        <member name="M:MyMoneyAssistant.Controllers.BaseWalletsController.GetAllWallets">
+            <summary>
+            Получить все кошельки
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyMoneyAssistant.Controllers.BaseWalletsController.GetBaseWallet(System.Int64)">
+            <summary>
+            Получить кошелек по ID
+            </summary>
+            <param name="id">Идентификатор кошелька</param>
+            <returns>Кошелек если он существует</returns>
+        </member>
+        <member name="M:MyMoneyAssistant.Controllers.BaseWalletsController.GetOnlyCardWallets">
+            <summary>
+            Получить список кошельков - карточек
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyMoneyAssistant.Controllers.BaseWalletsController.DeleteBaseWallet(System.Int64)">
+            <summary>
+            Удалить кошелек
+            </summary>
+            <param name="id">Идентификатор кошелька</param>
+            <returns></returns>
+        </member>
+        <member name="T:MyMoneyAssistant.Controllers.CreditCardWalletsController">
+            <summary>
+            Контроллер кошельков - кредитных карточек
+            </summary>
+        </member>
+        <member name="M:MyMoneyAssistant.Controllers.CreditCardWalletsController.GetCreditCardWallets">
+            <summary>
+            Получить список кошельков - кредитных карточек
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyMoneyAssistant.Controllers.CreditCardWalletsController.GetCreditCardWallet(System.Int64)">
+            <summary>
+            Получить кошелек - кредитную карточку по ID 
+            </summary>
+            <param name="id">Идентификатор кошелька</param>
+            <returns></returns>
+        </member>
+        <member name="M:MyMoneyAssistant.Controllers.CreditCardWalletsController.PutCreditCardWallet(System.Int64,MyMoneyAssistant.Models.Wallets.CreditCardWallet)">
+            <summary>
+            Изменить кошелек - кредитную карту
+            </summary>
+            <param name="id">Идентификатор кошелька</param>
+            <param name="creditCardWallet">Измененный кошелек</param>
+            <returns></returns>
+        </member>
+        <member name="M:MyMoneyAssistant.Controllers.CreditCardWalletsController.PostCreditCardWallet(MyMoneyAssistant.Models.Wallets.CreditCardWallet)">
+            <summary>
+            Создать кошелек - кредитную карточку
+            </summary>
+            <param name="creditCardWallet">Новый кошелек</param>
+            <returns></returns>
+        </member>
+        <member name="M:MyMoneyAssistant.Controllers.CreditCardWalletsController.DeleteCreditCardWallet(System.Int64)">
+            <summary>
+            Удалить кошелек - кредитную карточку
+            </summary>
+            <param name="id">Идентификатор кошелька</param>
+            <returns></returns>
+        </member>
+        <member name="T:MyMoneyAssistant.Controllers.DebitCardWalletsController">
+            <summary>
+            Контроллер кошельков - дебитовых карт
+            </summary>
+        </member>
+        <member name="M:MyMoneyAssistant.Controllers.DebitCardWalletsController.GetDebitCardWallets">
+            <summary>
+            Получить список кошельков - дебитовых карт
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyMoneyAssistant.Controllers.DebitCardWalletsController.GetDebitCardWallet(System.Int64)">
+            <summary>
+            Получить по ИД кошелек - дебитовую карту
+            </summary>
+            <param name="id">Идентификатор кошелька</param>
+            <returns></returns>
+        </member>
+        <member name="M:MyMoneyAssistant.Controllers.DebitCardWalletsController.PutDebitCardWallet(System.Int64,MyMoneyAssistant.Models.Wallets.DebitCardWallet)">
+            <summary>
+            Изменить кошелек - дебетовую карту
+            </summary>
+            <param name="id">Идентфикатор кошелька</param>
+            <param name="debitCardWallet">Измененный кошелек</param>
+            <returns></returns>
+        </member>
+        <member name="M:MyMoneyAssistant.Controllers.DebitCardWalletsController.PostDebitCardWallet(MyMoneyAssistant.Models.Wallets.DebitCardWallet)">
+            <summary>
+            Создать кошелек - дебетовую карту
+            </summary>
+            <param name="debitCardWallet">Новый кошелек</param>
+            <returns></returns>
+        </member>
+        <member name="M:MyMoneyAssistant.Controllers.DebitCardWalletsController.DeleteDebitCardWallet(System.Int64)">
+            <summary>
+            Удалить кошелек - дебетовую карту
+            </summary>
+            <param name="id">Идентификатор кошелька</param>
+            <returns></returns>
+        </member>
+        <member name="T:MyMoneyAssistant.Controllers.OperationGroupsController">
+            <summary>
+            Контроллер групп операций
+            </summary>
+        </member>
+        <member name="M:MyMoneyAssistant.Controllers.OperationGroupsController.GetOperationGroups">
+            <summary>
+            Получить все группы операций
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyMoneyAssistant.Controllers.OperationGroupsController.GetOperationGroup(System.Int64)">
+            <summary>
+            Получить группу операций по ID
+            </summary>
+            <param name="id">Идентификатор группы операций</param>
+            <returns></returns>
+        </member>
+        <member name="M:MyMoneyAssistant.Controllers.OperationGroupsController.GetGroupsOperations(System.Int64)">
+            <summary>
+            Запрос всех операций этой группы
+            </summary>
+            <param name="id">Идентификатор группы</param>
+            <returns></returns>
+        </member>
+        <member name="M:MyMoneyAssistant.Controllers.OperationGroupsController.PutOperationGroup(System.Int64,System.String)">
+            <summary>
+            Изменение имени группы операций
+            </summary>
+            <param name="id">Идентификатор группы</param>
+            <param name="newName">Новое имя группы</param>
+            <returns></returns>
+        </member>
+        <member name="M:MyMoneyAssistant.Controllers.OperationGroupsController.PostOperationGroup(System.String)">
+            <summary>
+            Создание группы операций
+            </summary>
+            <param name="name">Имя новой группы операций</param>
+            <returns></returns>
+        </member>
+        <member name="M:MyMoneyAssistant.Controllers.OperationGroupsController.DeleteOperationGroup(System.Int64)">
+            <summary>
+            Удаление группы операций
+            </summary>
+            <param name="id">Идентификатор группы</param>
+            <returns></returns>
+        </member>
+        <member name="T:MyMoneyAssistant.Controllers.OperationsController">
+            <summary>
+            Контроллер операций
+            </summary>
+        </member>
+        <member name="M:MyMoneyAssistant.Controllers.OperationsController.GetOperations">
+            <summary>
+            Получить все операции
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyMoneyAssistant.Controllers.OperationsController.GetOperation(System.Int64)">
+            <summary>
+            Получить операцию по ID
+            </summary>
+            <param name="id">Идентификатор операции</param>
+            <returns></returns>
+        </member>
+        <member name="M:MyMoneyAssistant.Controllers.OperationsController.PutOperation(System.Int64,MyMoneyAssistant.Models.Operation)">
+            <summary>
+            Изменить операцию
+            </summary>
+            <param name="id">Идентификатор операции</param>
+            <param name="operation">Измененная операция</param>
+            <returns></returns>
+        </member>
+        <member name="M:MyMoneyAssistant.Controllers.OperationsController.PostOperation(System.Double,System.String,System.Int64,System.Int64)">
+            <summary>
+            Создание операции
+            </summary>
+            <param name="value">Значение операции, если отрицательное будет вычитание из кошелька</param>
+            <param name="description">Описание операции</param>
+            <param name="walletId">Идентификатор кошелька</param>
+            <param name="groupId">Идентифкатор группы</param>
+            <returns></returns>
+        </member>
+        <member name="M:MyMoneyAssistant.Controllers.OperationsController.DeleteOperation(System.Int64)">
+            <summary>
+            Удаление операции
+            </summary>
+            <param name="id">Идентификатор операции</param>
+            <returns></returns>
+        </member>
+        <member name="T:MyMoneyAssistant.Controllers.WalletsController">
+            <summary>
+            Контроллер физических кошельков
+            </summary>
+        </member>
+        <member name="M:MyMoneyAssistant.Controllers.WalletsController.GetWallets">
+            <summary>
+            Поолучить список физических кошельков
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyMoneyAssistant.Controllers.WalletsController.GetWallet(System.Int64)">
+            <summary>
+            Получить физический кошелек по ID
+            </summary>
+            <param name="id">Идентификатор кошелька</param>
+            <returns></returns>
+        </member>
+        <member name="M:MyMoneyAssistant.Controllers.WalletsController.PutWallet(System.Int64,MyMoneyAssistant.Models.Wallets.Wallet)">
+            <summary>
+            Изменить физический кошелек
+            </summary>
+            <param name="id">Идентификатор кошелька</param>
+            <param name="wallet">Измененный кошелек</param>
+            <returns></returns>
+        </member>
+        <member name="M:MyMoneyAssistant.Controllers.WalletsController.PostWallet(MyMoneyAssistant.Models.Wallets.Wallet)">
+            <summary>
+            Создать физический кошелек
+            </summary>
+            <param name="wallet">Новый физический кошелек</param>
+            <returns></returns>
+        </member>
+        <member name="M:MyMoneyAssistant.Controllers.WalletsController.DeleteWallet(System.Int64)">
+            <summary>
+            Удалить физический кошелек
+            </summary>
+            <param name="id">Идентификатор кошелька</param>
+            <returns></returns>
+        </member>
+        <member name="T:MyMoneyAssistant.Database.ApplicationDatabaseContext">
+            <summary>
+            Класс контекста БД
+            </summary>
+        </member>
+        <member name="P:MyMoneyAssistant.Database.ApplicationDatabaseContext.AllWallets">
+            <summary>
+            Контекст кошельков
+            </summary>
+        </member>
+        <member name="P:MyMoneyAssistant.Database.ApplicationDatabaseContext.CardWallets">
+            <summary>
+            Контекст всех карт - кошельков
+            </summary>
+        </member>
+        <member name="P:MyMoneyAssistant.Database.ApplicationDatabaseContext.Wallets">
+            <summary>
+            Контекст всех физических кошельков
+            </summary>
+        </member>
+        <member name="P:MyMoneyAssistant.Database.ApplicationDatabaseContext.DebitCardWallets">
+            <summary>
+            Контекст кошельков - дебетовых карт
+            </summary>
+        </member>
+        <member name="P:MyMoneyAssistant.Database.ApplicationDatabaseContext.CreditCardWallets">
+            <summary>
+            Контекст кошельков - кредитных карт
+            </summary>
+        </member>
+        <member name="P:MyMoneyAssistant.Database.ApplicationDatabaseContext.OperationGroups">
+            <summary>
+            Контекст групп операций
+            </summary>
+        </member>
+        <member name="P:MyMoneyAssistant.Database.ApplicationDatabaseContext.Operations">
+            <summary>
+            Контекст операций
+            </summary>
+        </member>
+        <member name="T:MyMoneyAssistant.Models.Operation">
+            <summary>
+            Операция над финансами
+            </summary>
+        </member>
+        <member name="P:MyMoneyAssistant.Models.Operation.Id">
+            <summary>
+            Идентификатор операции
+            </summary>
+        </member>
+        <member name="P:MyMoneyAssistant.Models.Operation.Value">
+            <summary>
+            Значение операции, если вычитание, то отрицательное
+            </summary>
+        </member>
+        <member name="P:MyMoneyAssistant.Models.Operation.Description">
+            <summary>
+            Описание или комментарий к операции
+            </summary>
+        </member>
+        <member name="P:MyMoneyAssistant.Models.Operation.OperationGroupId">
+            <summary>
+            Идентификатор группы операций
+            </summary>
+        </member>
+        <member name="P:MyMoneyAssistant.Models.Operation.Group">
+            <summary>
+            Привязка к группе операций
+            </summary>
+        </member>
+        <member name="P:MyMoneyAssistant.Models.Operation.BaseWalletId">
+            <summary>
+            Идентификатор кошелька
+            </summary>
+        </member>
+        <member name="P:MyMoneyAssistant.Models.Operation.Wallet">
+            <summary>
+            Привязка к кошельку
+            </summary>
+        </member>
+        <member name="P:MyMoneyAssistant.Models.Operation.DateTime">
+            <summary>
+            Дата/время совершения операции, если null, то будет установлено текущее время сервера
+            </summary>
+        </member>
+        <member name="T:MyMoneyAssistant.Models.OperationGroup">
+            <summary>
+            Группа операций
+            </summary>
+        </member>
+        <member name="P:MyMoneyAssistant.Models.OperationGroup.Id">
+            <summary>
+            Идентификатор группы
+            </summary>
+        </member>
+        <member name="P:MyMoneyAssistant.Models.OperationGroup.Name">
+            <summary>
+            Имя группы
+            </summary>
+        </member>
+        <member name="P:MyMoneyAssistant.Models.OperationGroup.Operations">
+            <summary>
+            Список операций этой группы
+            </summary>
+        </member>
+        <member name="T:MyMoneyAssistant.Models.Wallets.BaseWallet">
+            <summary>
+            Базовый класс для кошельков
+            </summary>
+        </member>
+        <member name="P:MyMoneyAssistant.Models.Wallets.BaseWallet.Id">
+            <summary>
+            Идентификатор кошелька
+            </summary>
+        </member>
+        <member name="P:MyMoneyAssistant.Models.Wallets.BaseWallet.Name">
+            <summary>
+            Имя кошелька
+            </summary>
+        </member>
+        <member name="P:MyMoneyAssistant.Models.Wallets.BaseWallet.WalletType">
+            <summary>
+            Тип кошелька
+            </summary>
+        </member>
+        <member name="P:MyMoneyAssistant.Models.Wallets.BaseWallet.Currency">
+            <summary>
+            Валюта кошелька
+            </summary>
+        </member>
+        <member name="P:MyMoneyAssistant.Models.Wallets.BaseWallet.CurrentValue">
+            <summary>
+            Текущее значение кошелька
+            </summary>
+        </member>
+        <member name="T:MyMoneyAssistant.Models.Wallets.CardWallet">
+            <summary>
+            Кошелек - карта, абстрактный
+            </summary>
+        </member>
+        <member name="T:MyMoneyAssistant.Models.Wallets.CreditCardWallet">
+            <summary>
+            Кошелек - кредитная карта
+            </summary>
+        </member>
+        <member name="T:MyMoneyAssistant.Models.Wallets.DebitCardWallet">
+            <summary>
+            Кошелек - дебитовая карта
+            </summary>
+        </member>
+        <member name="T:MyMoneyAssistant.Models.Wallets.Wallet">
+            <summary>
+            Физический кошелек
+            </summary>
+        </member>
+        <member name="T:MyMoneyAssistant.Models.Wallets.WalletTypes">
+            <summary>
+            Типы кошельков
+            </summary>
+        </member>
+        <member name="F:MyMoneyAssistant.Models.Wallets.WalletTypes.WALLET">
+            <summary>
+            Физический кошелек с наличными
+            </summary>
+        </member>
+        <member name="F:MyMoneyAssistant.Models.Wallets.WalletTypes.DebitCard">
+            <summary>
+            Дебетовая карта
+            </summary>
+        </member>
+        <member name="F:MyMoneyAssistant.Models.Wallets.WalletTypes.CreditCard">
+            <summary>
+            Кредитная карта
+            </summary>
+        </member>
+        <member name="T:MyMoneyAssistant.Models.Wallets.Currency">
+            <summary>
+            Виды валют
+            </summary>
+        </member>
+        <member name="F:MyMoneyAssistant.Models.Wallets.Currency.BTC">
+            <summary>
+            Биткойн
+            </summary>
+        </member>
+        <member name="F:MyMoneyAssistant.Models.Wallets.Currency.Rub">
+            <summary>
+            Рубли
+            </summary>
+        </member>
+        <member name="F:MyMoneyAssistant.Models.Wallets.Currency.Usd">
+            <summary>
+            Доллары
+            </summary>
+        </member>
+        <member name="F:MyMoneyAssistant.Models.Wallets.Currency.Eur">
+            <summary>
+            Евро
+            </summary>
+        </member>
+    </members>
+</doc>
