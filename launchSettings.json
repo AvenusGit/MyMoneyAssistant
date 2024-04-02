@@ -4,7 +4,16 @@
       "commandName": "DockerCompose",
       "commandVersion": "1.0",
       "serviceActions": {
-        "mymoneyassistant": "StartDebugging"
+        "mymoneyassistant": "StartDebugging",
+        "postgres": "StartWithoutDebugging"
+      }
+    },
+    "Docker Compose Release": {
+      "commandName": "DockerCompose",
+      "commandVersion": "1.0",
+      "serviceActions": {
+        "mymoneyassistant": "StartWithoutDebugging",
+        "postgres": "StartWithoutDebugging"
       }
     }
   }

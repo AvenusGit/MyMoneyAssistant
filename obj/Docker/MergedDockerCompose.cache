@@ -1,17 +1,49 @@
+name: dockercompose13829446175540634701
 services:
   mymoneyassistant:
     build:
       context: C:\Projects\PET\MyMoneyAssistant
       dockerfile: MyMoneyAssistant/Dockerfile
+    depends_on:
+      postgres:
+        condition: service_started
+        required: true
     environment:
       ASPNETCORE_ENVIRONMENT: Development
-      ASPNETCORE_HTTPS_PORTS: '8081'
-      ASPNETCORE_HTTP_PORTS: '8080'
+      ASPNETCORE_HTTP_PORTS: "8080"
     image: mymoneyassistant
+    networks:
+      default: null
     ports:
-    - target: 8080
-    - target: 8081
+      - mode: ingress
+        target: 8080
+        published: "8080"
+        protocol: tcp
     volumes:
-    - C:\Users\v.brodikov\AppData\Roaming\ASP.NET\Https:/home/app/.aspnet/https:ro
-    - C:\Users\v.brodikov\AppData\Roaming\Microsoft\UserSecrets:/home/app/.microsoft/usersecrets:ro
-version: '3.4'
+      - type: bind
+        source: C:\Users\v.brodikov\AppData\Roaming/Microsoft/UserSecrets
+        target: /home/app/.microsoft/usersecrets
+        read_only: true
+        bind:
+          create_host_path: true
+      - type: bind
+        source: C:\Users\v.brodikov\AppData\Roaming/ASP.NET/Https
+        target: /home/app/.aspnet/https
+        read_only: true
+        bind:
+          create_host_path: true
+  postgres:
+    container_name: postgres
+    environment:
+      POSTGRES_PASSWORD: postgres
+    image: postgres
+    networks:
+      default: null
+    ports:
+      - mode: ingress
+        target: 5432
+        published: "8001"
+        protocol: tcp
+networks:
+  default:
+    name: dockercompose13829446175540634701_default

@@ -36,7 +36,7 @@ namespace MyMoneyAssistant
 
             var app = builder.Build();
 
-            // тестовое приложение использует сваггер нетолько в дебаге
+            // тестовое приложение использует сваггер не только в дебаге
             app.UseSwagger();
             app.UseSwaggerUI();
 

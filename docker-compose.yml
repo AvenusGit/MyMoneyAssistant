@@ -3,6 +3,9 @@ version: '3.4'
 services:
   mymoneyassistant:
     image: ${DOCKER_REGISTRY-}mymoneyassistant
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
     build:
       context: .
       dockerfile: MyMoneyAssistant/Dockerfile
@@ -10,7 +13,7 @@ services:
         "postgres":
             condition: service_started
     ports:
-        - "8000:80"
+        - "8080:8080"
   postgres:
     container_name: 'postgres'
     image: postgres
